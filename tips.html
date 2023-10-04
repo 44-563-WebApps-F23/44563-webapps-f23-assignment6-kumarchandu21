@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>
+        Tips
+    </title>
+ </head>
+<body>
+
+<h2>Kumar Chandu - shows tip amounts</h2>
+
+<form>
+    <label for="baseAmount">Enter base amount: </label>
+    <input type ="number" id="baseAmount" name="baseAmount" value=50> <br>
+
+    <label for="tipPercent">Enter the tip percent: </label>
+    <input type ="number" id="tipPercent" name="tipPercent" value="15"> <br>
+
+    <input type="button" onclick="tips()" value="Show tip">
+</form>
+
+
+<p id="result">This text will be replaced </p>
+
+<form>
+    <input type="radio" id="sum" name="tip" value="sum" >
+    <label for="sum">Sum</label></br>
+  
+    <input type="radio" id="diff" name="tip" 
+       value="difference">
+    <label for="diff">Difference</label></br>
+  
+    <input type="radio" id="mult" name="tip"   
+       value="product">
+    <label for="mult">Product</label></br>
+
+    <input type="button" onclick="chooseOp()" value="Get values from radio group">
+  </form>
+  <p id="resu">Outputs</p>
+
+<script> 
+
+function tips(){
+    
+    let baseValue= document.getElementById("baseAmount").value;
+    let initialTip= document.getElementById("tipPercent").value;
+    let myOutput=" ";
+    for(let i = 0;i <=5;i++){
+        let value= parseInt(initialTip) + i*4;
+        myOutput=myOutput+value + "% is Calculated " + (baseValue * value /100) + ";";
+    
+
+    }
+    let toShow = document.getElementById("result")
+    toShow.innerHTML = " Tips are: " + myOutput;
+}
+
+function chooseOp() {
+    let baseValue= document.getElementById("baseAmount").value;
+    let initialTip= document.getElementById("tipPercent").value;
+    let operator = document.querySelector("input[name='tip']:checked").value;
+    let Output;
+    switch (operator) {
+        case "sum":
+            Output=parseInt(baseValue)+parseInt(initialTip);
+            break;
+        case "difference":
+            Output=parseInt(baseValue)-parseInt(initialTip);
+            break;
+        case "product":
+            Output=parseInt(baseValue)*parseInt(initialTip);
+            break;
+
+    }
+    
+    
+    let out = document.getElementById("resu")
+    out.innerHTML=operator + " of " + baseValue+ " and " + initialTip + " is " + Output;
+}
+</script>
+
+</body>
+</html> 
